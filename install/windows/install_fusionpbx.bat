@@ -47,6 +47,15 @@ ECHO THIS WILL INSTALL AND CONFIGURE FUSIONPBX FREESWITCH, POSTGRESQL, PHP, AND 
 	unzip php-7.0.1-nts-Win32-VC14-x64.zip
 	
 	pause
+	echo Download FusionPBX
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/fusionpbx/fusionpbx/archive/4.0.0.zip', '4.0.0.zip')"
+	powershell -Command "Invoke-WebRequest https://github.com/fusionpbx/fusionpbx/archive/4.0.0.zip -OutFile 4.0.0.zip"
+	
+	cd "C:/nginx-1.9.9/html"
+	unzip 4.0.0.zip
+	del 4.0.0.zip
+	echo goto http://localhost to do web gui install part. Come back and press enter to continue after that.
+	pause
 	
 	
 	
