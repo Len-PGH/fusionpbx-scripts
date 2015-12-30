@@ -25,7 +25,8 @@ ECHO THIS WILL INSTALL AND CONFIGURE FUSIONPBX FREESWITCH, POSTGRESQL, PHP, AND 
 	powershell -Command "Invoke-WebRequest http://get.enterprisedb.com/postgresql/postgresql-9.4.5-3-windows-x64.exe -OutFile postgresql-9.4.5-3-windows-x64.exe"
 	Pause
 	ECHO Going to install Postgresql
-	start /wait postgresql-9.4.5-3-windows-x64.exe /quiet
+	
+	start /wait postgresql-9.4.5-3-windows-x64.exe --mode unattended --superpassword database_superuser_password --servicepassword system_password
 	Pause Going to install NGINX 1.9.9
 	cd "C:/"
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://nginx.org/download/nginx-1.9.9.zip', 'nginx-1.9.9.zip')"
@@ -33,12 +34,16 @@ ECHO THIS WILL INSTALL AND CONFIGURE FUSIONPBX FREESWITCH, POSTGRESQL, PHP, AND 
 	Pause Going to unzip NGINX
 	ECHO Going to UnZip NGINX
 	unzip nginx-1.9.9.zip
-	
+	cd "C:/nginx-1.9.9"
 	Pause
 	ECHO Going to install PHP 7.0
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://windows.php.net/downloads/releases/php-7.0.1-nts-Win32-VC14-x64.zip', 'php-7.0.1-nts-Win32-VC14-x64.zip')"
 	powershell -Command "Invoke-WebRequest http://windows.php.net/downloads/releases/php-7.0.1-nts-Win32-VC14-x64.zip -OutFile php-7.0.1-nts-Win32-VC14-x64.zip"
 	unzip php-7.0.1-nts-Win32-VC14-x64.zip
+	
+	pause
+	
+	
 	
 	
 	
