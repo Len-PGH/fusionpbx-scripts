@@ -37,6 +37,10 @@ ECHO THIS WILL INSTALL AND CONFIGURE FUSIONPBX FREESWITCH, POSTGRESQL, PHP, AND 
 	unzip nginx-1.9.9.zip
 	cd "C:/nginx-1.9.9"
 	Pause
+	REM // needed for php7.0
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe', 'vc_redist.x64.exe')"
+	powershell -Command "Invoke-WebRequest https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x64.exe -OutFile vc_redist.x64.exe"
+	start /wait vc_redist.x64.exe /quiet
 	ECHO Going to install PHP 7.0
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://windows.php.net/downloads/releases/php-7.0.1-nts-Win32-VC14-x64.zip', 'php-7.0.1-nts-Win32-VC14-x64.zip')"
 	powershell -Command "Invoke-WebRequest http://windows.php.net/downloads/releases/php-7.0.1-nts-Win32-VC14-x64.zip -OutFile php-7.0.1-nts-Win32-VC14-x64.zip"
