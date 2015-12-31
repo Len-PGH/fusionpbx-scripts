@@ -1,6 +1,6 @@
 @ECHO OFF
-ECHO USE THIS INSTALL AT YOUR OWN RISK!!!
-ECHO THIS WILL INSTALL AND CONFIGURE FUSIONPBX FREESWITCH, POSTGRESQL, PHP, AND NGINX
+ECHO Use This Install AT YOUR OWN RISK!!!
+Echo this will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and NGINX.
     
     @echo on
      
