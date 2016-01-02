@@ -11,8 +11,8 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and 
     
 	cd "%USERPROFILE%\Downloads"
 	Pause Going to download Freeswitch
-	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://files.freeswitch.org/windows/installer/x64/freeswitch.msi', 'freeswitch.msi')"
-	powershell -Command "Invoke-WebRequest http://files.freeswitch.org/windows/installer/x64/freeswitch.msi -OutFile freeswitch.msi"
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://files.freeswitch.org/windows/installer/x64/freeswitch.msihttp://files.freeswitch.org/windows/installer/x64/FreeSWITCH-1.7.0-0a024c4ecb-64bit.msi', 'FreeSWITCH-1.7.0-0a024c4ecb-64bit.msi')"
+	powershell -Command "Invoke-WebRequest http://files.freeswitch.org/windows/installer/x64/FreeSWITCH-1.7.0-0a024c4ecb-64bit.msi -OutFile FreeSWITCH-1.7.0-0a024c4ecb-64bit.msi"
 	
 	ECHO Going to install Freeswitch
 	Pause
@@ -61,15 +61,10 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and 
 	pause 
 	start /wait Git-2.6.4-64-bit.exe /quiet
 	del Git-2.6.4-64-bit.exe
+	REM // 
 	pause
 	cd "C:/nginx-1.9.9"
-	echo Download Memcached-1.4.4-14
-	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://downloads.northscale.com/memcached-win64-1.4.4-14.zip', 'memcached-win64-1.4.4-14.zip')"
-	powershell -Command "Invoke-WebRequest http://downloads.northscale.com/memcached-win64-1.4.4-14.zip -OutFile memcached-win64-1.4.4-14.zip"
 	
-	unzip memcached-win64-1.4.4-14.zip
-	del memcached-win64-1.4.4-14.zip
-	memcached.exe -d install
 	pause
 	REM // next part need to configure nginx.conf, php.ini(might have this pre-done and cp it from release download)
 	
