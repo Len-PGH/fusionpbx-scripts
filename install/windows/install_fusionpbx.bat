@@ -24,7 +24,15 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and 
 	Pause
 	ECHO Going to install Postgresql
 	
-	start /wait postgresql-9.4.5-3-windows-x64.exe --mode unattended --superpassword database_superuser_password --servicepassword system_password
+	set database_superuser_password = Default
+	echo Enter database_superuser_password
+	set /p database_superuser_password=
+	
+	set system_password = Default
+	echo Enter system_password
+	set /p system_password=
+	
+	start /wait postgresql-9.4.5-3-windows-x64.exe --mode unattended --superpassword %database_superuser_password% --servicepassword %system_password%
 	Pause Going to install NGINX 1.9.9
 	cd "C:/"
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://nginx.org/download/nginx-1.9.9.zip', 'nginx-1.9.9.zip')"
