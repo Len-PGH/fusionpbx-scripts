@@ -1,6 +1,6 @@
 @ ECHO OFF
 ECHO Use This Install AT YOUR OWN RISK!!!
-Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and NGINX.
+Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP, NGINX and 7-Zip.
     
     REM //@echo on
      
@@ -8,12 +8,15 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and 
 	ECHO Let's Install!
 	ECHO Please wait just a few moments.....
 	
-    
+    	
 	cd "%USERPROFILE%\Downloads"
 	Pause Going to download Freeswitch
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://files.freeswitch.org/windows/installer/x64/FreeSWITCH-1.7.0-0a024c4ecb-64bit.msi', 'FreeSWITCH-1.7.0-0a024c4ecb-64bit.msi')"
 	powershell -Command "Invoke-WebRequest http://files.freeswitch.org/windows/installer/x64/FreeSWITCH-1.7.0-0a024c4ecb-64bit.msi -OutFile FreeSWITCH-1.7.0-0a024c4ecb-64bit.msi"
-	
+	echo Downloading and Installing 7-Zip
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://www.7-zip.org/a/7z1514-x64.exe', '7z1514-x64.exe')"
+	powershell -Command "Invoke-WebRequest http://www.7-zip.org/a/7z1514-x64.exe -OutFile 7z1514-x64.exe"
+	start /wait 7z1514-x64.exe /quiet
 	ECHO Going to install Freeswitch
 	Pause
   	start /wait freeswitch.msi /quiet
@@ -39,7 +42,7 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and 
 	powershell -Command "Invoke-WebRequest http://nginx.org/download/nginx-1.9.9.zip -OutFile nginx-1.9.9.zip"
 	Pause Going to unzip NGINX
 	ECHO Going to UnZip NGINX
-	unzip nginx-1.9.9.zip
+	"C:\Program Files\7-Zip\7z.exe" e nginx-1.9.9.zip
 	cd "C:/nginx-1.9.9"
 	Pause
 	REM // needed for php7.0
@@ -49,7 +52,7 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and 
 	ECHO Going to install PHP 7.0
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://windows.php.net/downloads/releases/php-7.0.1-nts-Win32-VC14-x64.zip', 'php-7.0.1-nts-Win32-VC14-x64.zip')"
 	powershell -Command "Invoke-WebRequest http://windows.php.net/downloads/releases/php-7.0.1-nts-Win32-VC14-x64.zip -OutFile php-7.0.1-nts-Win32-VC14-x64.zip"
-	unzip php-7.0.1-nts-Win32-VC14-x64.zip
+	"C:\Program Files\7-Zip\7z.exe" e php-7.0.1-nts-Win32-VC14-x64.zip
 	
 	pause
 	cd "C:/nginx-1.9.9/html"
@@ -57,7 +60,7 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and 
 	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/fusionpbx/fusionpbx/archive/master.zip', 'master.zip')"
 	powershell -Command "Invoke-WebRequest https://github.com/fusionpbx/fusionpbx/archive/master.zip -OutFile master.zip"
 	
-	unzip master.zip
+	"C:\Program Files\7-Zip\7z.exe" e master.zip
 	del master.zip
 	echo goto http://localhost to do web gui install part. Come back and press enter to continue after that.
 	pause
