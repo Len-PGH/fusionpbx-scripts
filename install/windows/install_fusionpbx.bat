@@ -28,7 +28,7 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP and 
 	echo Enter database_superuser_password
 	set /p database_superuser_password=
 	
-	set system_password = Default
+	set system_password = Default1
 	echo Enter system_password
 	set /p system_password=
 	
