@@ -13,4 +13,5 @@ The following will be installed:
 * PHP (7.0)
 * GIT (Git-2.6.4-64-bit)
 * 7zip
-* 
+
+If you find a better way please edit the script.  This script is not completed yet.
