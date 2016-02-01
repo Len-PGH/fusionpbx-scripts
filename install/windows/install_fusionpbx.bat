@@ -35,6 +35,23 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP, NGI
 	echo Enter system_password
 	set /p system_password=
 	
+	echo Downloading postgresql-odbc
+	powershell -Command "Invoke-WebRequest https://ftp.postgresql.org/pub/odbc/versions/msi/psqlodbc_09_05_0100-x64.zip -OutFile psqlodbc_x64.msi"
+	echo postgresql-odbc install
+	start /wait psqlodbc_x64.msi /quiet
+	pause
+	
+	
+	echo Download Git
+	REM // powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/git-for-windows/git/releases/download/v2.6.4.windows.1/Git-2.6.4-64-bit.exe', 'Git-2.6.4-64-bit.exe')"
+	powershell -Command "Invoke-WebRequest https://github.com/git-for-windows/git/releases/download/v2.6.4.windows.1/Git-2.6.4-64-bit.exe -OutFile Git-2.6.4-64-bit.exe"
+	echo install git
+	pause 
+	start /wait Git-2.6.4-64-bit.exe /quiet
+	del Git-2.6.4-64-bit.exe
+	REM // 
+	pause
+	
 	start /wait postgresql-9.4.5-3-windows-x64.exe --mode unattended --superpassword %database_superuser_password% --servicepassword %system_password%
 	Pause Going to install NGINX 1.9.9
 	cd "C:/"
@@ -58,22 +75,14 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP, NGI
 	cd "C:/nginx-1.9.9/html"
 	echo Download FusionPBX
 	REM // powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/fusionpbx/fusionpbx/archive/master.zip', 'master.zip')"
-	powershell -Command "Invoke-WebRequest https://github.com/fusionpbx/fusionpbx/archive/master.zip -OutFile master.zip"
+	REM // powershell -Command "Invoke-WebRequest https://github.com/fusionpbx/fusionpbx/archive/master.zip -OutFile master.zip"
 	
-	"C:\Program Files\7-Zip\7z.exe" e master.zip
-	del master.zip
+	REM // "C:\Program Files\7-Zip\7z.exe" e master.zip
+	REM // del master.zip
 	echo goto http://localhost to do web gui install part. Come back and press enter to continue after that.
 	pause
 	
-	echo Download Git
-	REM // powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/git-for-windows/git/releases/download/v2.6.4.windows.1/Git-2.6.4-64-bit.exe', 'Git-2.6.4-64-bit.exe')"
-	powershell -Command "Invoke-WebRequest https://github.com/git-for-windows/git/releases/download/v2.6.4.windows.1/Git-2.6.4-64-bit.exe -OutFile Git-2.6.4-64-bit.exe"
-	echo install git
-	pause 
-	start /wait Git-2.6.4-64-bit.exe /quiet
-	del Git-2.6.4-64-bit.exe
-	REM // 
-	pause
+	
 	cd "C:/nginx-1.9.9"
 	
 	pause
