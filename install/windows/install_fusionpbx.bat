@@ -41,6 +41,9 @@ Echo This will install and configure FusionPBX, FreeSWITCH, PostgreSQL, PHP, NGI
 	start /wait psqlodbc_x64.msi /quiet
 	pause
 	
+	echo Configure ODBC Administrator
+	echo The ODBC Administrator window will open. Go to the System DSN tab and click *ADD* then choose PostgreSQL Unicode(x64) and click finish.  You will have info to fill out. Leave *Data Source* as is, SSLmode disabled and enter the other info. Press *test* to be sure the info is correct.  You should get *connection successful*. Click Save then on. Go back to the script and press the any key ;)
+	start "C:\Windows\System32\odbcad32.exe"
 	
 	echo Download Git
 	REM // powershell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/git-for-windows/git/releases/download/v2.6.4.windows.1/Git-2.6.4-64-bit.exe', 'Git-2.6.4-64-bit.exe')"
